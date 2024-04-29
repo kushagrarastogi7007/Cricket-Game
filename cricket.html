@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Game</title>
+    <link rel="stylesheet" href="cricket.css">
+</head>
+<body>
+    <h1>Bat Ball Stump Game</h1>
+
+    <button class="choice-button" onclick="
+    let computerChoice = generateComputerChoice('');
+    let resultMsg = getResult('Bat', computerChoice);
+    showResult('Bat', computerChoice, resultMsg);
+    "><img src="images/bat.png" alt="Bat Image" class="choice-image"></button>
+    
+    <button class="choice-button" onclick="  
+    computerChoice = generateComputerChoice();
+    resultMsg = getResult('Ball', computerChoice);
+    showResult('Ball' , computerChoice, resultMsg);
+    "><img src="images/ball.png" alt="Ball Image" class="choice-image"></button>
+
+    <button class="choice-button" onclick="
+    computerChoice = generateComputerChoice();
+    resultMsg = getResult('Stump', computerChoice);
+    showResult('Stump' , computerChoice, resultMsg);
+    "><img src="images/stump.png" alt="Stump Image" class="choice-image"></button>
+
+    <h3 id="user-move"></h3>
+    <h3 id="computer-move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score" ></h3>
+
+    <button onclick="localStorage.clear()
+    resetScore();
+    ">Reset</button>
+
+    <script src="cricket.js"></script>
+</body>
+</html> 
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Game</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .bat{
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            width: 60px;
+            cursor: pointer;
+            background-color: rgb(237, 142, 79);
+            margin-right: 30px;   
+        }
+        .ball{
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            width: 60px;
+            cursor: pointer;
+            background-color: rgb(206, 252, 40);
+            margin-right: 30px;
+        }
+        .stump{
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            width: 60px;
+            cursor: pointer;
+            background-color: rgb(76, 116, 234);
+        }
+        .bat:hover{
+            background-color: rgb(249, 185, 105);
+        }
+        .ball:hover{
+            background-color: rgb(142, 255, 56);
+        }
+        .stump:hover{
+            background-color: rgb(177, 141, 239);
+        }
+    </style>
+</head>
+<body>
+    <h1>Bat Ball Stump Game</h1>
+    <button class="bat" onclick="
+    
+    //This has been made into a function 'generateComputerChoice'
+
+    // This will generate random number between 0 and 3
+    // let randomNumber = Math.random() * 3;
+   // computerChoice;
+    // if(randomNumber > 0 && randomNumber <= 1) {
+    //     computerChoice = 'Bat';
+        // console.log('Computer choice is Bat');
+    // }else if(randomNumber > 1 && randomNumber <=2){
+    //     computerChoice = 'Ball';
+        // console.log('Computer choice is Ball');
+    // }
+    // else{
+    //     computerChoice = 'Stump';
+        // console.log('Computer choice is Stump');
+    // }
+    // const computerChoiceMsg = `Computer choice is ${computerChoice}`;//removed
+
+    let computerChoice = generateComputerChoice('');
+    
+    let resultMsg = getResult('Bat', computerChoice);
+    // if(computerChoice === 'Ball') {
+    //     resultMsg ='User won'; 
+    // }else if(computerChoice === 'Bat') {
+    //     resultMsg ='It is a tie';
+    // }else if(computerChoice === 'Stump'){
+    //     resultMsg = 'Computer has won';
+    // }// removed
+    
+    showResult('Bat', computerChoice, resultMsg);
+    // alert(`You have chosen Stump.Computer choice is ${computerChoice} and ${resultMsg}`);// removed
+    ">Bat</button>
+    
+    <button class="ball" onclick="
+
+    //This has been made into a function 'generateComputerChoice'
+    
+    computerChoice = generateComputerChoice();
+
+    resultMsg = getResult('Ball', computerChoice);
+    
+    showResult('Ball' , computerChoice, resultMsg);
+    ">Ball</button>
+
+    <button class="stump" onclick="
+     //This has been made into a function 'generateComputerChoice'
+
+     computerChoice = generateComputerChoice();
+
+     resultMsg = getResult('Stump', computerChoice);
+     showResult('Stump' , computerChoice, resultMsg);
+    ">Stump</button>
+
+    <script>
+        // let computerChoice//removed
+        function generateComputerChoice(){
+            // This will generate random number between 0 and 3
+            let randomNumber = Math.random() * 3;
+    if(randomNumber > 0 && randomNumber <= 1) {
+        return 'Bat';
+    }
+    else if(randomNumber > 1 && randomNumber <=2){
+        return 'Ball';
+    }
+    else{
+        return 'Stump';
+    }
+        }
+
+        function getResult(userMove, computerMove) {
+           if(userMove === 'Bat') {
+            if(computerMove === 'Ball') {
+             return 'User won'; 
+    }
+    else if(computerMove === 'Bat') {
+             return 'It is a tie';
+    }
+    else if(computerMove === 'Stump'){
+             return 'Computer has won';
+    }
+           }
+        else if(userMove === 'Ball')
+           {
+            if(computerMove === 'Ball')  
+    {
+        return `It's a tie`; 
+    }
+    else if(computerMove === 'Bat') {
+        return 'Computer has won';
+    }
+    else if(computerMove === 'Stump'){
+        return 'User won';
+    }
+           }
+           else {
+            if(computerMove === 'Ball') {
+        return `Computer has won`; 
+    }else if(computerMove === 'Bat') {
+        return'User won';
+    }else if(computerMove === 'Stump'){
+        return `It's a tie`;
+    }
+           }
+        }
+        
+        function showResult(userMove, computerMove, resultMsg) {
+
+alert(`You have chosen ${userMove} .Computer choice is ${computerMove} and ${resultMsg}`);
+
+}
+    </script>
+</body>
+</html>  -->
